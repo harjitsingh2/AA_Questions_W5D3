@@ -29,7 +29,7 @@ class Questions
         raise "#{self} already in database" if self.id 
         QuestionsDatabase.instance.execute(<<-SQL, self.title, self.body, self.user_id)
             INSERT INTO
-                questions (title, body, user_if)
+                questions (title, body, user_id)
             VALUES
                 (?, ?, ?)
         SQL
@@ -48,7 +48,15 @@ class Questions
         SQL
     end
 
-    def self.find_by_id
-        
+    def self.find_by_id(id)
+        QuestionsDatabase.instance.execute(<<-SQL, id)
+            SELECT
+                *
+            FROM
+                questions
+            WHERE
+                id = ?
+        SQL
+        Questions.new(Questions.first)
     end
 end
