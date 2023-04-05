@@ -2,7 +2,7 @@ require 'sqlite3'
 require 'singleton'
 
 class QuestionsDatabase < SQLite3::Database 
-    inlude Singletone
+    inlude Singleton
     def initialize
         super('questions.db')
         self.type_translation = true
