@@ -80,3 +80,17 @@ INSERT INTO
     replies (question_id, user_id, reply, parent_id)
 VALUES
     ((SELECT id FROM questions WHERE title = 'Are you sleeping?'), (SELECT id FROM users WHERE fname = 'Jeremy'), 'I already had coffee.', (SELECT id FROM replies WHERE id = 1));
+
+INSERT INTO 
+    question_follows (user_id, question_id)
+VALUES  
+    ((SELECT id FROM users WHERE fname = 'Harjit'), (SELECT id FROM questions WHERE title = 'Creating tables')), 
+    ((SELECT id FROM users WHERE fname = 'Jeremy'), (SELECT id FROM questions WHERE title = 'Naptime?')),
+    ((SELECT id FROM users WHERE fname = 'Kyle'), (SELECT id FROM questions WHERE title = 'Are you sleeping?'));
+
+INSERT INTO
+    question_likes (user_id, question_id, like_question)
+VALUES
+    (3, 1, TRUE),
+    (2, 2, TRUE),
+    (3, 2, FALSE);
